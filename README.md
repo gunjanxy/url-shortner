@@ -6,6 +6,7 @@
 ![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
 ![Docker Hub](https://img.shields.io/badge/Docker%20Hub-gunjanjain24-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+
 A production-ready URL shortener built with Flask, PostgreSQL, and Nginx — fully containerized with Docker.
 
 This repository is created for learning and practicing Docker concepts including multi-stage builds, environment variables, resource limits, custom networking, and reverse proxy configuration.
