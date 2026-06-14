@@ -1,0 +1,58 @@
+services:
+ web:
+   build: .
+   environment:
+    - DB_HOST=${DB_HOST}
+    - DB_NAME=${DB_NAME}
+    - DB_USER=${DB_USER}
+    - DB_PASSWORD=${DB_PASSWORD}
+   
+   depends_on:
+    - db
+   deploy:          
+     resources:
+       limits:
+         cpus: '0.5'
+         memory: 128M
+       reservations:
+         cpus: '0.25'
+         memory: 64M
+ db:
+  image: postgres:15
+  environment:
+   - POSTGRES_DB=${POSTGRES_DB}
+   - POSTGRES_USER=${POSTGRES_USER}
+   - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+  volumes: 
+   - pgdata:/var/lib/postgresql/data 
+  deploy:         
+    resources:
+      limits:
+        cpus: '1'
+        memory: 512M
+      reservations:
+        cpus: '0.5'
+        memory: 256M
+
+ nginx:
+  build:
+    context: .
+    dockerfile: Dockerfile.nginx
+  ports: 
+   - "8080:80"
+  depends_on:
+   - web
+  deploy:          
+    resources:
+      limits:
+        cpus: '0.5'
+        memory: 32M
+      reservations:
+        cpus: '0.25'
+        memory: 16M
+
+volumes:
+  pgdata:
+    
+   
+  
